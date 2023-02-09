@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Project E Quran</string>
+    <string name="al_quran">Al-Quran\nArab - Terjemahan - Arti - Tafsir</string>
+    <string name="nama_surat">Nama Surat</string>
+    <string name="tempat_turun">Tempat turun</string>
+    <string name="divider">-</string>
+    <string name="arti_surat">Arti Surat</string>
+    <string name="arabic_text">النصر</string>
+    <string name="tab1">Ayat</string>
+    <string name="tab2">Tafsir</string>
+    <string name="icon_alquran">icon_alquran</string>
+</resources>

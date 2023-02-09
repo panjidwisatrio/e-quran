@@ -1,0 +1,39 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.ProjectEQuran" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="Theme.ProjectEQuran.splash">
+        <item name="android:src">@drawable/ic_alquran</item>
+    </style>
+
+    <style name="Theme.ProjectEQuran.textAppBar">
+        <item name="fontFamily" tools:targetApi="o">@font/balsamicsans_bold</item>
+        <item name="android:textSize" tools:targetApi="o">20sp</item>
+        <item name="android:textColor" tools:targetApi="o">@color/white</item>
+    </style>
+
+    <style name="Theme.ProjectEQuran.toolBar">
+        <item name="android:background">@color/primary</item>
+    </style>
+
+    <style name="Theme.ProjectEQuran.NoActionBarAndStatusBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+</resources>
