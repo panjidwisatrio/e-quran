@@ -1,25 +1,23 @@
 package com.example.projectequran.data.remote
 
-import com.example.projectequran.model.Ayat
-import com.example.projectequran.model.Surat
-import com.example.projectequran.model.Tafsir
+import com.example.projectequran.model.*
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface ApiService {
-    @GET("/surat")
-    fun getSurat(): Call<List<Surat>>
+    @GET("surat")
+    fun getSurat(): Call<SuratList>
 
-    @GET("/surat/{nomor}")
+    @GET("surat/{nomor}")
     fun getAyat(
         @Path("nomor")
         nomor: Int
-    ): Call<List<Ayat>>
+    ): Call<AyatList>
 
-    @GET("/tafsir/{nomor}")
+    @GET("tafsir/{nomor}")
     fun getTafsir(
         @Path("nomor")
         nomor: Int
-    ): Call<List<Tafsir>>
+    ): Call<TafsirList>
 }

@@ -10,7 +10,7 @@ data class Surat(
     @field:Json(name = "nomor")
     @ColumnInfo(name = "nomor")
     @PrimaryKey
-    val nomor: String? = "",
+    val nomor: Int? = 0,
 
     @field:Json(name = "nama")
     @ColumnInfo(name = "nama")
@@ -22,7 +22,7 @@ data class Surat(
 
     @field:Json(name = "jumlahAyat")
     @ColumnInfo(name = "jumlahAyat")
-    val jumlahAyat: String? = "",
+    val jumlahAyat: Int? = 0,
 
     @field:Json(name = "tempatTurun")
     @ColumnInfo(name = "tempatTurun")
@@ -36,7 +36,7 @@ data class Surat(
     @ColumnInfo(name = "deskripsi")
     val deskripsi: String? = "",
 
-    @field:Json(name = "audio")
-    @ColumnInfo(name = "audio")
-    val audio: String? = "",
+    @field:Json(name = "audioFull")
+    @ColumnInfo(name = "audioFull")
+    val audio: Map<String, String> = mapOf(),
 )

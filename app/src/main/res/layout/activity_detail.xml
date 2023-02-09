@@ -4,6 +4,127 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    style="@style/Theme.ProjectEQuran.pageDetail"
     tools:context=".ui.detail.DetailActivity">
+
+    <TextView
+        android:id="@+id/tv_detail_namaSurat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nama_surat"
+        style="@style/Theme.ProjectEQuran.header"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_detail_artiSurat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/arti_surat"
+        style="@style/Theme.ProjectEQuran.subtext"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_namaSurat"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_detail_tempatTurun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tempat_turun"
+        style="@style/Theme.ProjectEQuran.subtext"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_artiSurat"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_detail_divider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/divider"
+        style="@style/Theme.ProjectEQuran.subtext"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_artiSurat"
+        app:layout_constraintStart_toEndOf="@+id/tv_detail_tempatTurun"/>
+
+    <TextView
+        android:id="@+id/tv_detail_jumlahAyat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/jumlah_ayat"
+        style="@style/Theme.ProjectEQuran.subtext"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_artiSurat"
+        app:layout_constraintStart_toEndOf="@+id/tv_detail_divider"/>
+
+    <TextView
+        android:id="@+id/tv_detail_deskripsi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="@string/deskripsi"
+        style="@style/Theme.ProjectEQuran.subtext"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_tempatTurun"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <ImageButton
+        android:id="@+id/btn_detail_play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/play_button_light"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_deskripsi"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/play_button" />
+
+    <ImageButton
+        android:id="@+id/btn_detail_baca"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/baca_button_light"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_deskripsi"
+        app:layout_constraintEnd_toStartOf="@+id/btn_detail_play"
+        android:contentDescription="@string/play_button" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="16dp"
+        app:tabSelectedTextColor="@color/white"
+        style="@style/Theme.ProjectEQuran.pageDetail"
+        android:minHeight="?actionBarSize"
+        app:layout_constraintTop_toBottomOf="@+id/btn_detail_baca"
+        app:tabIndicatorFullWidth="false"
+        app:tabIndicatorHeight="2dp"
+        app:tabMode="fixed"
+        app:tabRippleColor="@null"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@id/container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        style="@style/Theme.ProjectEQuran.viewPager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tabs" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
