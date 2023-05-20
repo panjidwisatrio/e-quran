@@ -1,6 +1,5 @@
 package com.example.projectequran.data
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.projectequran.data.remote.ApiService
@@ -10,10 +9,10 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class Repository(application: Application) {
+class Repository {
     private val retrofit: ApiService = RetrofitService.create()
 
-    fun getSurat() : LiveData<Resource<List<Surat>>> {
+    fun getSurat(): LiveData<Resource<List<Surat>>> {
         val surat = MutableLiveData<Resource<List<Surat>>>()
 
         surat.postValue(Resource.Loading())
@@ -39,7 +38,29 @@ class Repository(application: Application) {
         return surat
     }
 
-    fun getAyat(nomorSurat: Int) : LiveData<Resource<List<Ayat>>> {
+    fun getSuratDetail(nomorSurat: Int): LiveData<Resource<Surat>> {
+        val suratDetail = MutableLiveData<Resource<Surat>>()
+
+        suratDetail.postValue(Resource.Loading())
+        retrofit.getSuratDetail(nomorSurat).enqueue(object : Callback<SuratDetail> {
+            override fun onResponse(
+                call: Call<SuratDetail>,
+                response: Response<SuratDetail>
+            ) {
+                val list = response.body()?.data
+                suratDetail.postValue(Resource.Success(list))
+            }
+
+            override fun onFailure(call: Call<SuratDetail>, t: Throwable) {
+                suratDetail.postValue(Resource.Error(t.message))
+            }
+
+        })
+
+        return suratDetail
+    }
+
+    fun getAyat(nomorSurat: Int): LiveData<Resource<List<Ayat>>> {
         val ayat = MutableLiveData<Resource<List<Ayat>>>()
 
         ayat.postValue(Resource.Loading())
@@ -48,7 +69,7 @@ class Repository(application: Application) {
                 call: Call<AyatList>,
                 response: Response<AyatList>
             ) {
-                val list = response.body()?.data
+                val list = response.body()?.data?.ayat
 
                 if (list.isNullOrEmpty())
                     ayat.postValue(Resource.Error("list is empty"))
@@ -74,7 +95,7 @@ class Repository(application: Application) {
                 call: Call<TafsirList>,
                 response: Response<TafsirList>
             ) {
-                val list = response.body()?.data
+                val list = response.body()?.data?.tafsir
 
                 if (list.isNullOrEmpty())
                     tafsir.postValue(Resource.Error("list is empty"))

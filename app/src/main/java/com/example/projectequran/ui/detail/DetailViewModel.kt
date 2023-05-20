@@ -5,7 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import com.example.projectequran.data.Repository
 
 class DetailViewModel(application: Application): AndroidViewModel(application) {
-    private val repository = Repository(application)
+    private val repository = Repository()
 
-    fun getAyat(id: Int) = repository.getAyat(id)
+    fun getSuratDetail(nomorSurat: Int) = repository.getSuratDetail(nomorSurat)
 }

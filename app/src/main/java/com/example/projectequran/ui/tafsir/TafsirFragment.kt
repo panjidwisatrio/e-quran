@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.projectequran.data.Resource
 import com.example.projectequran.databinding.FragmentTafsirBinding
 import com.example.projectequran.model.Tafsir
 import com.example.projectequran.ui.adapter.TafsirAdapter
@@ -17,11 +19,13 @@ class TafsirFragment : Fragment(), ViewStateCallback<List<Tafsir>> {
     private lateinit var tafsirAdapter: TafsirAdapter
     private val viewModel: TafsirViewModel by viewModels()
     private var nomorSurat: Int = 0
+    private var namaSurat: String? = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             nomorSurat = it.getInt(KEY_BUNDLE)
+            namaSurat = it.getString(KEY_NAMA_SURAT)
         }
     }
 
@@ -36,27 +40,60 @@ class TafsirFragment : Fragment(), ViewStateCallback<List<Tafsir>> {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         tafsirAdapter = TafsirAdapter()
+        binding.rvTafsir.apply {
+            visibility = View.INVISIBLE
+            adapter = tafsirAdapter
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        }
+
+        viewModel.getTafsir(nomorSurat).observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Error -> onFailed(it.message)
+                is Resource.Loading -> onLoading()
+                is Resource.Success -> it.data?.let { it1 -> onSuccess(it1) }
+            }
+        }
     }
 
     override fun onSuccess(data: List<Tafsir>) {
-        TODO("Not yet implemented")
+        tafsirAdapter.setAllData(data)
+        tafsirAdapter.setNamaDanNomorSurat(namaSurat.toString(), nomorSurat)
+        binding.apply {
+            rvTafsir.visibility = View.VISIBLE
+            progressBar.visibility = View.INVISIBLE
+            ivError.visibility = View.INVISIBLE
+            tvError.visibility = View.INVISIBLE
+
+        }
     }
 
     override fun onLoading() {
-        TODO("Not yet implemented")
+        binding.apply {
+            rvTafsir.visibility = View.INVISIBLE
+            progressBar.visibility = View.VISIBLE
+            ivError.visibility = View.INVISIBLE
+            tvError.visibility = View.INVISIBLE
+        }
     }
 
     override fun onFailed(message: String?) {
-        TODO("Not yet implemented")
+        binding.apply {
+            rvTafsir.visibility = View.INVISIBLE
+            progressBar.visibility = View.INVISIBLE
+            ivError.visibility = View.VISIBLE
+            tvError.visibility = View.VISIBLE
+        }
     }
 
     companion object {
         private const val KEY_BUNDLE = "key_bundle"
+        private const val KEY_NAMA_SURAT = "key_nama_surat"
 
-        fun getInstance(nomorSurat: Int): Fragment {
+        fun getInstance(nomorSurat: Int, namaSurat:String): Fragment {
             return TafsirFragment().apply {
                 arguments = Bundle().apply {
                     putInt(KEY_BUNDLE, nomorSurat)
+                    putString(KEY_NAMA_SURAT, namaSurat)
                 }
             }
         }

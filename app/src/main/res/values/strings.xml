@@ -12,7 +12,7 @@
     <string name="something_went_wrong">Something went wrong!</string>
     <string name="_1">1</string>
     <string name="jumlah_ayat">jumlah ayat</string>
-    <string name="deskripsi">Deskripsi</string>
+    <string name="deskripsi">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
     <string name="play_button">play_button</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -20,4 +20,6 @@
     <string name="latin_text">latin text</string>
     <string name="tafsir_surat">tafsir surat</string>
     <string name="iv_error">iv_error</string>
+    <string name="ayat">Ayat</string>
+    <string name="tafsir_ayat">Tafsir ayat</string>
 </resources>

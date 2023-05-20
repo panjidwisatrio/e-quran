@@ -52,6 +52,17 @@
         app:layout_constraintStart_toEndOf="@+id/tv_detail_tempatTurun"/>
 
     <TextView
+        android:id="@+id/tv_detail_placeholderAyat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ayat"
+        style="@style/Theme.ProjectEQuran.subtext"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_artiSurat"
+        app:layout_constraintStart_toEndOf="@+id/tv_detail_jumlahAyat"/>
+
+    <TextView
         android:id="@+id/tv_detail_jumlahAyat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -81,7 +92,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"
-        android:src="@drawable/play_button_light"
+        style="@style/Theme.ProjectEQuran.playButtonDetail"
         android:layout_marginEnd="20dp"
         android:layout_marginTop="20dp"
         app:layout_constraintTop_toBottomOf="@+id/tv_detail_deskripsi"

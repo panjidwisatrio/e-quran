@@ -10,10 +10,10 @@
         android:id="@+id/nomor_surat"
         android:layout_width="42dp"
         android:layout_height="42dp"
+        style="@style/Theme.ProjectEQuran.card"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/star">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/number"

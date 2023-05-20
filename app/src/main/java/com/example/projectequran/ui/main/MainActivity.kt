@@ -43,14 +43,13 @@ class MainActivity : AppCompatActivity(), ViewStateCallback<List<Surat>> {
     }
 
     private fun getSurat() {
-//        CoroutineScope(Dispatchers.IO).launch(Dispatchers.Main) {
-//
-//        }
-        viewModel.getSurat().observe(this@MainActivity) {
-            when (it) {
-                is Resource.Error -> onFailed(it.message)
-                is Resource.Loading -> onLoading()
-                is Resource.Success -> it.data?.let { it1 -> onSuccess(it1) }
+        CoroutineScope(Dispatchers.Main).launch {
+            viewModel.getSurat().observe(this@MainActivity) {
+                when (it) {
+                    is Resource.Error -> onFailed(it.message)
+                    is Resource.Loading -> onLoading()
+                    is Resource.Success -> it.data?.let { it1 -> onSuccess(it1) }
+                }
             }
         }
     }

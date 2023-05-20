@@ -10,7 +10,7 @@
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
         <!-- Customize your theme here. -->
     </style>
 
@@ -64,6 +64,18 @@
 
     <style name="Theme.ProjectEQuran.toolBar">
         <item name="android:background">@color/primary</item>
+    </style>
+
+    <style name="Theme.ProjectEQuran.card">
+        <item name="android:background">@drawable/star</item>
+    </style>
+
+    <style name="Theme.ProjectEQuran.playButtonDetail">
+        <item name="android:src">@drawable/play_button_light</item>
+    </style>
+
+    <style name="Theme.ProjectEQuran.bacaButtonDetail">
+        <item name="android:src">@drawable/baca_button_dark</item>
     </style>
 
     <style name="Theme.ProjectEQuran.NoActionBarAndStatusBar">

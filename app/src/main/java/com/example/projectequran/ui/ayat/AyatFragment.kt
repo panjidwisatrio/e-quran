@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.projectequran.data.Resource
 import com.example.projectequran.databinding.FragmentAyatBinding
 import com.example.projectequran.model.Ayat
 import com.example.projectequran.ui.adapter.AyatAdapter
@@ -36,6 +38,57 @@ class AyatFragment : Fragment(), ViewStateCallback<List<Ayat>> {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         ayatAdapter = AyatAdapter()
+        binding.rvAyat.apply {
+            visibility = View.INVISIBLE
+            adapter = ayatAdapter
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        }
+
+        viewModel.getAyat(nomorSurat).observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Error -> onFailed(it.message)
+                is Resource.Loading -> onLoading()
+                is Resource.Success -> it.data?.let { it1 -> onSuccess(it1) }
+            }
+        }
+    }
+
+    override fun onSuccess(data: List<Ayat>) {
+        ayatAdapter.setAllData(data)
+        ayatAdapter.setNomorSurat(nomorSurat)
+        binding.apply {
+            rvAyat.visibility = View.VISIBLE
+            progressBar.visibility = View.INVISIBLE
+            ivError.visibility = View.INVISIBLE
+            tvError.visibility = View.INVISIBLE
+        }
+    }
+
+    override fun onLoading() {
+        binding.apply {
+            rvAyat.visibility = View.INVISIBLE
+            progressBar.visibility = View.VISIBLE
+            ivError.visibility = View.INVISIBLE
+            tvError.visibility = View.INVISIBLE
+        }
+    }
+
+    override fun onFailed(message: String?) {
+        binding.apply {
+            rvAyat.visibility = View.INVISIBLE
+            progressBar.visibility = View.INVISIBLE
+            ivError.visibility = View.VISIBLE
+            if (message != null) {
+                tvError.text = message
+                tvError.visibility = View.VISIBLE
+            } else {
+                tvError.visibility = View.VISIBLE
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
     }
 
     companion object {
@@ -48,17 +101,5 @@ class AyatFragment : Fragment(), ViewStateCallback<List<Ayat>> {
                 }
             }
         }
-    }
-
-    override fun onSuccess(data: List<Ayat>) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onLoading() {
-        TODO("Not yet implemented")
-    }
-
-    override fun onFailed(message: String?) {
-        TODO("Not yet implemented")
     }
 }

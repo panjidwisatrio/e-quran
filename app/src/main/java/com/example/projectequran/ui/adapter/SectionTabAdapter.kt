@@ -7,14 +7,14 @@ import com.example.projectequran.ui.ayat.AyatFragment
 import com.example.projectequran.ui.tafsir.TafsirFragment
 import com.example.projectequran.util.Constanta.TAB_TITLES
 
-class SectionTabAdapter(activity: AppCompatActivity, private val nomorSurat: Int) : FragmentStateAdapter(activity) {
+class SectionTabAdapter(activity: AppCompatActivity, private val nomorSurat: Int, private val namaSurat: String?) : FragmentStateAdapter(activity) {
     override fun getItemCount(): Int = TAB_TITLES.size
 
     override fun createFragment(position: Int): Fragment {
         var fragment: Fragment? = null
         when (position) {
             0 -> fragment = AyatFragment.getInstance(nomorSurat)
-            1 -> fragment = TafsirFragment.getInstance(nomorSurat)
+            1 -> fragment = TafsirFragment.getInstance(nomorSurat, namaSurat.toString())
         }
         return fragment as Fragment
     }

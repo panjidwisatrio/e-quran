@@ -10,6 +10,12 @@ interface ApiService {
     fun getSurat(): Call<SuratList>
 
     @GET("surat/{nomor}")
+    fun getSuratDetail(
+        @Path("nomor")
+        nomor: Int
+    ): Call<SuratDetail>
+
+    @GET("surat/{nomor}")
     fun getAyat(
         @Path("nomor")
         nomor: Int

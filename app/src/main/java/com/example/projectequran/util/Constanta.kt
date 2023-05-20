@@ -1,5 +1,6 @@
 package com.example.projectequran.util
 
+import android.media.MediaPlayer
 import androidx.annotation.StringRes
 import com.example.projectequran.R
 
@@ -8,13 +9,18 @@ object Constanta {
 
     const val SPLASH_SCREEN = "splash_screen"
 
-    const val EXTRA_NOMOR = "EXTRA_NOMOR"
+    const val EXTRA_NOMOR_SURAT = "EXTRA_NOMOR"
     const val EXTRA_NAMA_LATIN = "EXTRA_NAMA_LATIN"
-    const val EXTRA_JUMLAH_AYAT = "EXTRA_JJUMLAH_AYAT"
+    const val EXTRA_JUMLAH_AYAT = "EXTRA_JUMLAH_AYAT"
     const val EXTRA_TEMPAT_TURUN = "EXTRA_TEMPAT_TURUN"
     const val EXTRA_ARTI = "EXTRA_ARTI"
     const val EXTRA_DESKRIPSI = "EXTRA_DESKRIPSI"
-    const val EXTRA_AUDIO = "EXTRA_AUDIO"
+    const val EXTRA_TAFSIR = "EXTRA_TAFSIR"
+    const val EXTRA_NOMOR_AYAT = "EXTRA_NOMOR_AYAT"
+
+    // TODO: 10/10/2021 - Play Audio
+    var currentAudio: String? = ""
+    val mediaPlayer = MediaPlayer()
 
     @StringRes
     val TAB_TITLES = intArrayOf(
